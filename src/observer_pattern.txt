@@ -1,1 +1,1 @@
-
+Mẫu OBSERVER_PATTERN
