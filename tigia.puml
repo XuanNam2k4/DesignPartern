@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'Iobserver giao diện được sắp xếp thông báo cho server
+
+interface ThayDoiTiGia{
+'nhận thông báo vè sự thay đổi tỉ giá
+void nhanThongBao(float delta);
+}
+
+'thành phần subject
+class DichVuTiGia{
+'subject sẽ chứa 1 tập observer
+'attach 1 observer vào cái nh dau tu
+void dangKy(ThayDoiTiGia ndt)
+void huyDangKy(ThayDoiTiGia ndt)
+'phuong thuc tiep theo là notify
+'phuong thuc thong bao se duyet qua cac thanh phần đầu tư và nhận thông báo
+'thông báo ở đây là thay đổi tỉ giá
+void thongBao(float delta)
+}
+
+'nhà đầu tư concreate observer phải implement
+abstract class NhaDauTu{
+'sẽ thực hiện đăng ký hoặc là huỷ đăng ký
+'bởi sao ko tham so
+void dangKy()
+void huyDangKy()
+}
+
+ThayDoiTiGia <|.. NhaDauTu
+'
+NhaDauTu --> DichVuTiGia : "Dvtg"
+
+NhaDauTu <|.. NhaDauTuA
+NhaDauTu <|.. NhaDauTuB
+
+'thêm dấu sao để chỉ số nhiều
+DichVuTiGia *--> "*" ThayDoiTiGia: "nhaDauTus"
+
+@enduml
